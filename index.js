@@ -1,0 +1,11 @@
+import{i as l,S as h}from"./assets/vendor-5ObWk2rO.js";(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const s of t.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function o(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=o(e);fetch(e.href,t)}})();async function p(r){const i=await fetch(`https://pixabay.com/api/?key=47906037-2c0a065ebc1b1a12e8c8fed40&q=${encodeURIComponent(r)}&image_type=photo&orientation=horizontal&safesearch=true`);if(!i.ok)throw new Error("Failed to fetch images.");return i.json()}const d=document.getElementById("gallery"),u=document.getElementById("loader");function y(r){const n=r.map(({webformatURL:o,largeImageURL:i,tags:e,likes:t,views:s,comments:f,downloads:m})=>`
+      <a href="${i}" class="gallery-item">
+        <img src="${o}" alt="${e}" loading="lazy" />
+        <div class="info">
+          <p><b>Likes:</b> ${t}</p>
+          <p><b>Views:</b> ${s}</p>
+          <p><b>Comments:</b> ${f}</p>
+          <p><b>Downloads:</b> ${m}</p>
+        </div>
+      </a>`).join("");d.innerHTML=n}function g(){d.innerHTML=""}function b(){u.classList.remove("hidden")}function L(){u.classList.add("hidden")}function c(r){l.error({title:"Error",message:r})}function w(r){l.warning({title:"Warning",message:r})}const E=document.getElementById("search-form"),I=document.getElementById("search-input");let a;E.addEventListener("submit",async r=>{r.preventDefault();const n=I.value.trim();if(!n){c("Search field cannot be empty!");return}g(),b();try{const o=await p(n);if(o.hits.length===0){w("Sorry, there are no images matching your search query. Please try again!");return}y(o.hits),a?a.refresh():a=new h(".gallery a")}catch{c("Something went wrong. Please try again later.")}finally{L()}});
+//# sourceMappingURL=index.js.map
