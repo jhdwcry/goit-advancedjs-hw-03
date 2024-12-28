@@ -22,6 +22,7 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
 }
 
 main {
@@ -29,4 +30,39 @@ main {
 }
 main:has(.back-link) {
   text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+#search-form {
+  margin-bottom: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.gallery a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border: 1px solid black;
+  height: auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 20px;
+  gap: 28px;
 }
